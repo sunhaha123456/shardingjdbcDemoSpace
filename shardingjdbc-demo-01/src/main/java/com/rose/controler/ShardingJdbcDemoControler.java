@@ -41,7 +41,7 @@ public class ShardingJdbcDemoControler {
     }
 
     @GetMapping(value = "/test3")
-//    @Transactional
+    @Transactional
     public Object test3() {
         TbSysUser user  = new TbSysUser();
         user.setCreateDate(new Date());
