@@ -1,0 +1,29 @@
+
+	测试非分片单表指定id查询                   ok
+	测试非分片单表save操作，并进行事务性校验   ok
+	测试非分片单表分页查询
+
+	测试非分片三表关联指定id查询
+	测试非分片三表关联分页查询
+
+	测试单独分片表时，指定id、orderNo条件查询
+	测试单独分片表时，分页查询：
+		分片表所有数据均落在某一张物理表
+		分片表数据落在多长物理表
+	进行事务性校验
+
+	测试分片表与非分片表关联id查询
+	测试分片表与非分片表关联分页查询：
+		分片表所有数据均落在某一张物理表
+		分片表数据落在多长物理表
+	测试事务性
+======================================================================================================================================================================
+1、mybatis 生成记录时，获取记录对应的id
+方式一：
+  int returnIdInsert(TbSysUser user);
+  <insert id="returnIdInsert" parameterType="com.rose.data.entity.TbSysUser" useGeneratedKeys="true" keyProperty="id">
+    insert into tb_sys_user (create_date, last_modified,role_group_id, uname, upwd,user_state)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastModified,jdbcType=TIMESTAMP},#{roleGroupId,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{upwd,jdbcType=VARCHAR},    #{userState,jdbcType=INTEGER})
+  </insert>
+方式二：
+    tkmybatis 的insert 会自动获取
