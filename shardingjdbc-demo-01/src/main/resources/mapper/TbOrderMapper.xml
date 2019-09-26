@@ -11,4 +11,8 @@
     <result column="order_sum_amount" jdbcType="DECIMAL" property="orderSumAmount" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+
+  <select id="limitTest" resultMap="BaseResultMap">
+    select * from tb_order rt where user_id = #{userId} limit #{start}, #{size}
+  </select>
 </mapper>
