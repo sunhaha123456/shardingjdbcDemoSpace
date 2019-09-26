@@ -6,6 +6,7 @@ import com.rose.data.entity.TbSysUser;
 import com.rose.mapper.TbOrderMapper;
 import com.rose.mapper.TbSysUserMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shardingsphere.api.hint.HintManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,5 +78,11 @@ public class ShardingJdbcDemoControler {
             System.out.println(e);
             return null;
         }
+    }
+
+    @GetMapping(value = "/test6")
+    public Object test6(@RequestParam String orderNo) {
+
+        return null;
     }
 }
