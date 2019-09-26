@@ -1,6 +1,7 @@
 package com.rose.controler;
 
 import com.rose.common.exception.BusinessException;
+import com.rose.data.entity.TbOrder;
 import com.rose.data.entity.TbSysUser;
 import com.rose.mapper.TbOrderMapper;
 import com.rose.mapper.TbSysUserMapper;
@@ -8,9 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -59,5 +62,20 @@ public class ShardingJdbcDemoControler {
         TbSysUser user  = new TbSysUser();
         long c = tbSysUserMapper.selectCount(user);
         return tbSysUserMapper.limitTest(2, 3);
+    }
+
+    @GetMapping(value = "/test5")
+    public Object test5(@RequestParam String orderNo) {
+        try {
+            TbOrder param = new TbOrder();
+            param.setUserId(1L);
+            param.setOrderNo(orderNo);
+            TbOrder order = tbOrderMapper.selectOne(param);
+            System.out.println(1);
+            return order;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
 }

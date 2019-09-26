@@ -5,8 +5,8 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
     <result column="order_sum_amount" jdbcType="DECIMAL" property="orderSumAmount" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
