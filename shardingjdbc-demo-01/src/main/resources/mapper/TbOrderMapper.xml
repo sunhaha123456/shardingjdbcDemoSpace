@@ -15,4 +15,33 @@
   <select id="limitTest" resultMap="BaseResultMap">
     select * from tb_order rt where user_id = #{userId} limit #{start}, #{size}
   </select>
+
+  <select id="listTest" resultMap="BaseResultMap">
+    select * from tb_order
+    where id in
+    <foreach collection="idList" index="index" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+    and (instr(remark, #{remark}) > 0)
+  </select>
+
+  <select id="listTestByUserId" resultMap="BaseResultMap">
+    select * from tb_order
+    where id in
+    <foreach collection="idList" index="index" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+    and (instr(remark, #{remark}) > 0)
+    and user_id = 1
+  </select>
+
+  <select id="listTestByUserIdList" resultMap="BaseResultMap">
+    select * from tb_order
+    where id in
+    <foreach collection="idList" index="index" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+    and (instr(remark, #{remark}) > 0)
+    and user_id in (1,2)
+  </select>
 </mapper>

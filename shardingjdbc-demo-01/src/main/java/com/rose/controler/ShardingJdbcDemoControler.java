@@ -1,6 +1,7 @@
 package com.rose.controler;
 
 import com.rose.common.exception.BusinessException;
+import com.rose.common.util.JsonUtil;
 import com.rose.data.entity.TbOrder;
 import com.rose.data.entity.TbSysUser;
 import com.rose.mapper.TbOrderMapper;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 功能：登录 controller
@@ -82,8 +85,27 @@ public class ShardingJdbcDemoControler {
     public Object test6(@RequestParam String orderNo) {
         TbOrder param = new TbOrder();
         param.setId(1L);
+        param.setOrderNo(orderNo);
         TbOrder order = tbOrderMapper.selectOne(param);
         System.out.println(1);
         return order;
+    }
+
+    @GetMapping(value = "/test7")
+    public Object test7() {
+        List list1 = tbOrderMapper.listTest(Arrays.asList(1L, 2L, 3L), "aaa");
+        System.out.println(JsonUtil.objectToJson(list1));
+        System.out.println("=============");
+        return tbOrderMapper.listTestByUserId(Arrays.asList(1L, 2L, 3L), "aaa");
+    }
+
+    @GetMapping(value = "/test8")
+    public Object test8() {
+        return tbOrderMapper.listTestByUserIdList(Arrays.asList(1L, 2L, 3L), "aaa");
+    }
+
+    @GetMapping(value = "/test9")
+    public Object test9() {
+        return tbOrderMapper.selectAll();
     }
 }
